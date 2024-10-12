@@ -102,7 +102,7 @@
     <string>Angle (degrees)</string>
    </property>
   </widget>
-  <widget class="QSpinBox" name="width">
+  <widget class="QDoubleSpinBox" name="width">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -118,7 +118,7 @@
     <number>10</number>
    </property>
   </widget>
-  <widget class="QSpinBox" name="height">
+  <widget class="QDoubleSpinBox" name="height">
    <property name="geometry">
     <rect>
      <x>140</x>
@@ -134,7 +134,7 @@
     <number>20</number>
    </property>
   </widget>
-  <widget class="QSpinBox" name="angle">
+  <widget class="QDoubleSpinBox" name="angle">
    <property name="geometry">
     <rect>
      <x>140</x>
