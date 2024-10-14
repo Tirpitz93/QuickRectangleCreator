@@ -15,8 +15,8 @@ author=Adrian Bocianowski & L Selter
 email=Loenja@selter.co.uk
 
 about=This is a rework of the QRectangleCreator plugin. It allows you to create a rectangle with the specified width, length and rotation. The plugin also allows you to snap the rectangle to the grid. The plugin is designed to be more user friendly and to have more features than the original plugin. It makes use of the mouse wheel to rotate the rectangles on the fly. Rectangle dimensions can be saved and recalled quickly through a drop down.
-tracker=https://github.com/tirpitz93/QRectangleCreator/issues
-repository=https://github.com/tirpitz93/QRectangleCreator
+tracker=https://github.com/Tirpitz93/QRectangleCreator/issues
+repository=https://github.com/Tirpitz93/QRectangleCreator
 # End of mandatory metadata
 
 # Recommended items:
@@ -27,7 +27,7 @@ repository=https://github.com/tirpitz93/QRectangleCreator
 # Tags are comma separated with spaces allowed
 tags=python, rectangle, size, angle, create polygon, create rectangle with map units, snap, snapped
 
-homepage=https://github.com/tirpitz93/QRectangleCreator
+homepage=https://github.com/Tirpitz93/QRectangleCreator
 category=Plugins
 icon=icons/addRectangle.png
 # experimental flag
