@@ -64,12 +64,19 @@ def try_catch(func):
             logger.error(f"Exception occurred in {func.__name__}: {e}", exc_info=True)
             # Optionally, you can re-raise the exception or handle it as needed
             # raise
+            if len(args) > 0 and isinstance(args[0], (QRectangleCreator, StartDrawing)):
+                args[0].iface.messageBar().pushCritical('QRectangle Creator: ', f'Error: {e}')
 
     return wrapper
 
 
 class QRectangleCreator:
     def __init__(self, iface):
+
+        self.mainButton = QToolButton()
+        self.preset_size_dropdown = QComboBox()
+        self.add_to_presets_button = QToolButton()
+        self.remove_from_presets_button = QToolButton()
         self.config = {
         }
         self.load_settings()
@@ -241,7 +248,6 @@ class QRectangleCreator:
         icon_path = ':/plugins/QRectangleCreator/icons/'
 
         # LoginButton
-        self.mainButton = QToolButton()
         self.mainButton.setIcon(QIcon(icon_path + 'addRectangle.png'))
         self.mainButton.setPopupMode(QToolButton.MenuButtonPopup)
         self.mainButton.clicked.connect(self.run)
@@ -282,17 +288,14 @@ class QRectangleCreator:
         self.toolsToolbar.addWidget(self.a_box)
 
         # Preset size dropdown
-        self.preset_size_dropdown = QComboBox()
         self.preset_size_dropdown.addItems(self.config["presets"].keys())
         self.preset_size_dropdown.currentIndexChanged.connect(self.updatePresetSize)
         self.toolsToolbar.addWidget(self.preset_size_dropdown)
         # Add to Presets button
-        self.add_to_presets_button = QToolButton()
         self.add_to_presets_button.setText("Add to Presets")
         self.add_to_presets_button.clicked.connect(self.addToPresets)
         self.toolsToolbar.addWidget(self.add_to_presets_button)
         # Remove from Presets button
-        self.remove_from_presets_button = QToolButton()
         self.remove_from_presets_button.setText("Remove from Presets")
         self.remove_from_presets_button.clicked.connect(self.removeFromPresets)
         self.toolsToolbar.addWidget(self.remove_from_presets_button)
@@ -522,7 +525,7 @@ class StartDrawing(QgsMapToolEmitPoint):
         else:
             self.iface.messageBar().pushCritical('QRectangle Creator: ',
                                                  'The current layer is not of Polygon or MultiPolygon type. The object has not been added')
-
+        raise Exception("End of drawing")
     @try_catch
     def getRectangle(self, point):
         polygon = QgsWkbTypes.GeometryType(3)
