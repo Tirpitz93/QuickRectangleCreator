@@ -10,7 +10,7 @@
 name=BetterQRectangleCreator
 qgisMinimumVersion=3.0
 description=BetterQRectangleCreator allows you to create a polygon (rectangle) with the specified width, length on the rotation. New and improved features and useability.
-version=0.3
+version=0.4
 author=Adrian Bocianowski & L Selter
 email=Loenja@selter.co.uk
 
