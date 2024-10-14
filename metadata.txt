@@ -27,7 +27,7 @@ repository=https://github.com/tirpitz93/QRectangleCreator
 # Tags are comma separated with spaces allowed
 tags=python, rectangle, size, angle, create polygon, create rectangle with map units, snap, snapped
 
-homepage=https://github.com/tirpitz/QRectangleCreator
+homepage=https://github.com/tirpitz93/QRectangleCreator
 category=Plugins
 icon=icons/addRectangle.png
 # experimental flag
