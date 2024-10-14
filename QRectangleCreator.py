@@ -525,7 +525,9 @@ class StartDrawing(QgsMapToolEmitPoint):
         else:
             self.iface.messageBar().pushCritical('QRectangle Creator: ',
                                                  'The current layer is not of Polygon or MultiPolygon type. The object has not been added')
-        raise Exception("End of drawing")
+        # raise Exception("End of drawing")
+
+
     @try_catch
     def getRectangle(self, point):
         polygon = QgsWkbTypes.GeometryType(3)
