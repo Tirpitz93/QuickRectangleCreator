@@ -185,7 +185,8 @@ class QRectangleCreator:
         settings.sync()
     @try_catch
     def settingsChanged(self, settings):
-        self.config |= settings
+        # self.config |= settings
+        self.config.update(settings)
         self.updateToolbar(settings)
         if hasattr(self, "drawingObject") and  isinstance(self.drawingObject, StartDrawing) and self.drawingObject is not None:
             self.drawingObject.setConfiguration(self.config['width'], self.config['height'], self.config['angle'])
