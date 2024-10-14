@@ -23,6 +23,7 @@
 """
 import functools
 import logging
+from dataclasses import field
 
 from qgis.PyQt import uic
 from qgis._core import QgsSettings
@@ -505,13 +506,14 @@ class StartDrawing(QgsMapToolEmitPoint):
                 feature.setGeometry(geom)
 
             if "rotation" in fields.names():
+                logger.error(f"rotation: {self.parent.config['angle']}")
                 feature.setAttribute("rotation", self.parent.config['angle'])
             if "width" in fields.names():
+                logger.error(f"width: {self.parent.config['width']}")
                 feature.setAttribute("width", self.parent.config['width'])
             if "height" in fields.names():
+                logger.error(f"height: {self.parent.config['height']}")
                 feature.setAttribute("height", self.parent.config['height'])
-
-
 
             layer.startEditing()
             layer.addFeature(feature)
