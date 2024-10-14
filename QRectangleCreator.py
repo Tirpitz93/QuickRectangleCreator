@@ -32,6 +32,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 from qgis._gui import QgsMessageBar
+
 try:
     import pydevd_pycharm
 
@@ -107,6 +108,7 @@ class QRectangleCreator:
         self.h_box = QLineEdit()
         self.w_box = QLineEdit()
         self.a_box = QLineEdit()
+
     @try_catch
     def updateWidth(self, width):
         _width = self.config['width']
@@ -115,6 +117,7 @@ class QRectangleCreator:
             self.settingsChanged({'width': float(width)})
         except Exception as e:
             self.settingsChanged({'width': _width})
+
     @try_catch
     def updateHeight(self, height):
         _height = self.config['height']
@@ -123,6 +126,7 @@ class QRectangleCreator:
             self.settingsChanged({'height': float(height)})
         except Exception as e:
             self.settingsChanged({'height': _height})
+
     @try_catch
     def updateAngle(self, angle):
         _angle = self.config['angle']
@@ -131,7 +135,6 @@ class QRectangleCreator:
             self.settingsChanged({'angle': float(angle)})
         except Exception as e:
             self.settingsChanged({'angle': _angle})
-
 
     def tr(self, message):
         return QCoreApplication.translate('QRectangleCreator', message)
@@ -183,12 +186,14 @@ class QRectangleCreator:
         settings.setValue('angle', self.config['angle'])
         settings.endGroup()
         settings.sync()
+
     @try_catch
     def settingsChanged(self, settings):
         # self.config |= settings
         self.config.update(settings)
         self.updateToolbar(settings)
-        if hasattr(self, "drawingObject") and  isinstance(self.drawingObject, StartDrawing) and self.drawingObject is not None:
+        if hasattr(self, "drawingObject") and isinstance(self.drawingObject,
+                                                         StartDrawing) and self.drawingObject is not None:
             self.drawingObject.setConfiguration(self.config['width'], self.config['height'], self.config['angle'])
             # self.drawingObject.canvasMoveEvent(None)
         if isinstance(self.settingsDlg, SettingsDialog) and self.settingsDlg is not None:
@@ -281,9 +286,9 @@ class QRectangleCreator:
         self.w_box.setText(str(self.config['width']))
         self.a_box.setText(str(self.config['angle']))
 
-        self.h_box.editingFinished.connect(lambda :self.updateHeight(self.h_box.text()))
-        self.w_box.editingFinished.connect(lambda :self.updateWidth(self.w_box.text()))
-        self.a_box.editingFinished.connect(lambda :self.updateAngle(self.a_box.text()))
+        self.h_box.editingFinished.connect(lambda: self.updateHeight(self.h_box.text()))
+        self.w_box.editingFinished.connect(lambda: self.updateWidth(self.w_box.text()))
+        self.a_box.editingFinished.connect(lambda: self.updateAngle(self.a_box.text()))
         self.toolsToolbar.addWidget(self.h_box)
         self.toolsToolbar.addWidget(self.w_box)
         self.toolsToolbar.addWidget(self.a_box)
@@ -301,8 +306,8 @@ class QRectangleCreator:
         self.remove_from_presets_button.clicked.connect(self.removeFromPresets)
         self.toolsToolbar.addWidget(self.remove_from_presets_button)
 
-
         self.first_start = True
+
     @try_catch
     def removeFromPresets(self, e):
         current_preset = self.preset_size_dropdown.currentText()
@@ -329,7 +334,6 @@ class QRectangleCreator:
             settings.endGroup()
             self.preset_size_dropdown.addItem(preset_name)
 
-
     @try_catch
     def updatePresetSize(self, index):
         if "presets" not in self.config.keys():
@@ -340,6 +344,7 @@ class QRectangleCreator:
         name = self.preset_size_dropdown.itemText(index)
         if name in presets:
             self.settingsChanged(presets[name])
+
     @try_catch
     def updateToolbar(self, settings):
         self.config.update(settings)
@@ -349,9 +354,6 @@ class QRectangleCreator:
         self.settingsDlg.width.setValue((self.config['width']))
         self.settingsDlg.height.setValue((self.config['height']))
         self.settingsDlg.angle.setValue((self.config['angle']))
-
-
-
 
     @try_catch
     def unload(self):
@@ -379,9 +381,9 @@ class QRectangleCreator:
             self.SettingsButton.setEnabled(False)
 
     def settings(self):
-        self.settingsDlg.width.setValue (self.config['width'])
+        self.settingsDlg.width.setValue(self.config['width'])
         self.settingsDlg.height.setValue(self.config['height'])
-        self.settingsDlg.angle.setValue (self.config['angle'])
+        self.settingsDlg.angle.setValue(self.config['angle'])
         self.settingsDlg.show()
         current_width = self.settingsDlg.width.value()
         current_height = self.settingsDlg.height.value()
@@ -459,11 +461,11 @@ class StartDrawing(QgsMapToolEmitPoint):
             logger.error('wheelEvent Shift')
             if e.angleDelta().y() > 0:
                 logger.error(f"wheelEvent {self.parent.config['angle']} -> {self.parent.config['angle'] - 5}")
-                self.parent.updateAngle(self.parent.config['angle']-5)
+                self.parent.updateAngle(self.parent.config['angle'] - 5)
             else:
                 # logger.error('wheelEvent Shift')
                 logger.error(f"wheelEvent {self.parent.config['angle']} -> {self.parent.config['angle'] + 5}")
-                self.parent.updateAngle(self.parent.config['angle']+5)
+                self.parent.updateAngle(self.parent.config['angle'] + 5)
             self.rubberBand.reset(QgsWkbTypes.GeometryType(3))
             self.rubberBand.setToGeometry(self.rectangle, None)
             self.rubberBand.show()
@@ -501,7 +503,7 @@ class StartDrawing(QgsMapToolEmitPoint):
         fields = layer.fields()
         feature.setFields(fields)
 
-        if layer.wkbType() == QgsWkbTypes.Polygon or layer.wkbType() == QgsWkbTypes.MultiPolygon:
+        if layer.wkbType() in (QgsWkbTypes.Polygon, QgsWkbTypes.MultiPolygon, QgsWkbTypes.PolygonZM, QgsWkbTypes.PolygonZ, QgsWkbTypes.PolygonM , QgsWkbTypes.MultiPolygonZM, QgsWkbTypes.MultiPolygonZ, QgsWkbTypes.MultiPolygonM ):
             if layer_crs == canvas_crs:
                 feature.setGeometry(self.rectangle)
             else:
@@ -527,7 +529,6 @@ class StartDrawing(QgsMapToolEmitPoint):
             self.iface.messageBar().pushCritical('QRectangle Creator: ',
                                                  'The current layer is not of Polygon or MultiPolygon type. The object has not been added')
         # raise Exception("End of drawing")
-
 
     @try_catch
     def getRectangle(self, point):
