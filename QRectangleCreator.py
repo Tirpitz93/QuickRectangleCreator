@@ -504,6 +504,15 @@ class StartDrawing(QgsMapToolEmitPoint):
                 geom.transform(crs2crs)
                 feature.setGeometry(geom)
 
+            if "rotation" in fields.names():
+                feature.setAttribute("rotation", self.parent.config['angle'])
+            if "width" in fields.names():
+                feature.setAttribute("width", self.parent.config['width'])
+            if "height" in fields.names():
+                feature.setAttribute("height", self.parent.config['height'])
+
+
+
             layer.startEditing()
             layer.addFeature(feature)
             layer.commitChanges()
