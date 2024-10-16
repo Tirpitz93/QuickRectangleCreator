@@ -7,16 +7,16 @@
 # This file should be included when you package your plugin.# Mandatory items:
 
 [general]
-name=BetterQRectangleCreator
+name=QuickRectangleCreator
 qgisMinimumVersion=3.0
-description=BetterQRectangleCreator allows you to create a polygon (rectangle) with the specified width, length on the rotation. New and improved features and useability.
+description=QuickRectangleCreator allows you to create a polygon (rectangle) with the specified width, length on the rotation. New and improved features and useability.
 version=0.4
 author=Adrian Bocianowski & L Selter
 email=Loenja@selter.co.uk
 
-about=This is a rework of the QRectangleCreator plugin. It allows you to create a rectangle with the specified width, length and rotation. The plugin also allows you to snap the rectangle to the grid. The plugin is designed to be more user friendly and to have more features than the original plugin. It makes use of the mouse wheel to rotate the rectangles on the fly. Rectangle dimensions can be saved and recalled quickly through a drop down.
-tracker=http://github.com/Tirpitz93/QRectangleCreator/issues
-repository=http://github.com/Tirpitz93/QRectangleCreator
+about=This is a rework of the QuickRectangleCreator plugin. It allows you to create a rectangle with the specified width, length and rotation. The plugin also allows you to snap the rectangle to the grid. The plugin is designed to be more user friendly and to have more features than the original plugin. It makes use of the mouse wheel to rotate the rectangles on the fly. Rectangle dimensions can be saved and recalled quickly through a drop down.
+tracker=http://github.com/Tirpitz93/QuickRectangleCreator/issues
+repository=http://github.com/Tirpitz93/QuickRectangleCreator
 # End of mandatory metadata
 
 # Recommended items:
@@ -27,7 +27,7 @@ repository=http://github.com/Tirpitz93/QRectangleCreator
 # Tags are comma separated with spaces allowed
 tags=python, rectangle, size, angle, create polygon, create rectangle with map units, snap, snapped
 
-homepage=http://github.com/Tirpitz93/QRectangleCreator
+homepage=http://github.com/Tirpitz93/QuickRectangleCreator
 category=Plugins
 icon=icons/addRectangle.png
 # experimental flag
