@@ -324,6 +324,8 @@ class QRectangleCreator:
         current_preset = self.preset_size_dropdown.currentText()
         self.preset_size_dropdown.clear()
         self.preset_size_dropdown.addItems(self.config["presets"].keys())
+        logger.error(f"current_preset: {current_preset}")
+        logger.error(f"presets: {self.config['presets']}")
         if current_preset in self.config["presets"]:
             self.preset_size_dropdown.setCurrentText(current_preset)
 
@@ -341,6 +343,7 @@ class QRectangleCreator:
             settings.setValue(preset_name, new_preset)
             settings.endGroup()
             # self.preset_size_dropdown.addItem(preset_name)
+            self.settingsChanged(new_preset)
             self.update_dropdown()
 
     @try_catch
