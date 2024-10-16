@@ -342,6 +342,7 @@ class QRectangleCreator:
             settings.beginGroup('QRectangleCreator/Presets')
             settings.setValue(preset_name, new_preset)
             settings.endGroup()
+            self.load_settings()
             # self.preset_size_dropdown.addItem(preset_name)
             self.settingsChanged(new_preset)
             self.update_dropdown()
