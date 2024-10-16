@@ -294,7 +294,7 @@ class QRectangleCreator:
         self.toolsToolbar.addWidget(self.a_box)
 
         # Preset size dropdown
-        self.preset_size_dropdown.addItems(self.config["presets"].keys())
+        self.update_dropdown()
         self.preset_size_dropdown.currentIndexChanged.connect(self.updatePresetSize)
         self.toolsToolbar.addWidget(self.preset_size_dropdown)
         # Add to Presets button
@@ -317,7 +317,15 @@ class QRectangleCreator:
             settings.beginGroup('QRectangleCreator/Presets')
             settings.remove(current_preset)
             settings.endGroup()
-            self.preset_size_dropdown.removeItem(self.preset_size_dropdown.currentIndex())
+            # self.preset_size_dropdown.removeItem(self.preset_size_dropdown.currentIndex())
+
+    @try_catch
+    def update_dropdown(self):
+        current_preset = self.preset_size_dropdown.currentText()
+        self.preset_size_dropdown.clear()
+        self.preset_size_dropdown.addItems(self.config["presets"].keys())
+        if current_preset in self.config["presets"]:
+            self.preset_size_dropdown.setCurrentText(current_preset)
 
     @try_catch
     def addToPresets(self, e):
@@ -332,7 +340,8 @@ class QRectangleCreator:
             settings.beginGroup('QRectangleCreator/Presets')
             settings.setValue(preset_name, new_preset)
             settings.endGroup()
-            self.preset_size_dropdown.addItem(preset_name)
+            # self.preset_size_dropdown.addItem(preset_name)
+            self.update_dropdown()
 
     @try_catch
     def updatePresetSize(self, index):
