@@ -10,7 +10,7 @@
 name=QuickRectangleCreator
 qgisMinimumVersion=3.0
 description=QuickRectangleCreator allows you to create a rectangle quickly and easily, preset sizes, snap to grid and rotate on the fly.
-version=0.4
+version=0.5
 author=Adrian Bocianowski & L Selter
 email=Loenja@selter.co.uk
 
@@ -23,6 +23,7 @@ repository=http://github.com/Tirpitz93/QuickRectangleCreator
 
 # Uncomment the following line and add your changelog:
 changelog=
+ [version=0.5] - Fix gif in readme.
  [version=0.4] - Adds mouse wheel to rotate.
   adds presets.
   adds float compatibility.
