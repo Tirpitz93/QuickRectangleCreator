@@ -4,4 +4,4 @@ The added object is visible in the map window in real time. Clicking adds the ob
 Important! The selected layer must be of type: polygon. If you try to add an object to, for example, 
 a point layer, an error message will be displayed. Polygon dimensions are treated as mapping units in which the map is currently rendered.
 
-<img src="https://github.com/Tirpitz93/QuickRectangleCreator/blob/master/HowTo_gif/new_features.gif?raw=true" alt="QuickRectangleCreator.gif">
+<img src="HowTo_gif/new_features.gif" alt="QuickRectangleCreator.gif">
